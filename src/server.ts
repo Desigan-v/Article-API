@@ -1,7 +1,6 @@
-// server.js or app.js
 import express from 'express';
-import cors from 'cors';  // Import CORS middleware
-import { sequelize } from './config/database';  // Import the sequelize connection
+import cors from 'cors';
+import { sequelize } from './config/database';
 import articleRoutes from './routes/article.routes';
 import path from 'path';
 
@@ -10,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 // Enable CORS
 const corsOptions = {
-  origin: 'http://localhost:3001', // Replace with your frontend URL
+  origin: 'http://localhost:3001',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
 };
@@ -28,7 +27,7 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 app.use(articleRoutes);
 
 // Sync database and start server
-sequelize.sync({ alter: true })  // Ensure DB is in sync with models
+sequelize.sync({ alter: true })
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
